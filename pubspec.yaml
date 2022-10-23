@@ -41,6 +41,9 @@ dev_dependencies:
   # freezed
   freezed: ^2.2.0
   json_serializable: ^6.5.3
+
+  # dio mock
+  http_mock_adapter: ^0.3.3
   
 
 flutter:
