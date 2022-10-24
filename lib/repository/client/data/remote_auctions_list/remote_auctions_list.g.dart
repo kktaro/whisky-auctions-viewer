@@ -1,25 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auctions_list.dart';
+part of 'remote_auctions_list.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AuctionsList _$$_AuctionsListFromJson(Map<String, dynamic> json) =>
-    _$_AuctionsList(
+_$_RemoteAuctionsList _$$_RemoteAuctionsListFromJson(
+        Map<String, dynamic> json) =>
+    _$_RemoteAuctionsList(
       auctions: (json['auctions'] as List<dynamic>)
-          .map((e) => AuctionOverview.fromJson(e as Map<String, dynamic>))
+          .map((e) => RemoteAuctionOverview.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_AuctionsListToJson(_$_AuctionsList instance) =>
+Map<String, dynamic> _$$_RemoteAuctionsListToJson(
+        _$_RemoteAuctionsList instance) =>
     <String, dynamic>{
       'auctions': instance.auctions,
     };
 
-_$_AuctionOverview _$$_AuctionOverviewFromJson(Map<String, dynamic> json) =>
-    _$_AuctionOverview(
+_$_RemoteAuctionOverview _$$_RemoteAuctionOverviewFromJson(
+        Map<String, dynamic> json) =>
+    _$_RemoteAuctionOverview(
       dateString: json['dt'] as String,
       maxWinningBid: (json['winning_bid_max'] as num).toDouble(),
       minWinningBid: (json['winning_bid_min'] as num).toDouble(),
@@ -28,7 +31,8 @@ _$_AuctionOverview _$$_AuctionOverviewFromJson(Map<String, dynamic> json) =>
       auctionSlug: json['auction_slug'] as String,
     );
 
-Map<String, dynamic> _$$_AuctionOverviewToJson(_$_AuctionOverview instance) =>
+Map<String, dynamic> _$$_RemoteAuctionOverviewToJson(
+        _$_RemoteAuctionOverview instance) =>
     <String, dynamic>{
       'dt': instance.dateString,
       'winning_bid_max': instance.maxWinningBid,
