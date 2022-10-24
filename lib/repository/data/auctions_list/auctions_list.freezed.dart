@@ -14,15 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AuctionsList _$AuctionsListFromJson(Map<String, dynamic> json) {
-  return _AuctionsList.fromJson(json);
-}
-
 /// @nodoc
 mixin _$AuctionsList {
   List<AuctionOverview> get auctions => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuctionsListCopyWith<AuctionsList> get copyWith =>
       throw _privateConstructorUsedError;
@@ -95,13 +90,10 @@ class __$$_AuctionsListCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_AuctionsList with DiagnosticableTreeMixin implements _AuctionsList {
+
+class _$_AuctionsList implements _AuctionsList {
   const _$_AuctionsList({required final List<AuctionOverview> auctions})
       : _auctions = auctions;
-
-  factory _$_AuctionsList.fromJson(Map<String, dynamic> json) =>
-      _$$_AuctionsListFromJson(json);
 
   final List<AuctionOverview> _auctions;
   @override
@@ -111,16 +103,8 @@ class _$_AuctionsList with DiagnosticableTreeMixin implements _AuctionsList {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'AuctionsList(auctions: $auctions)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'AuctionsList'))
-      ..add(DiagnosticsProperty('auctions', auctions));
   }
 
   @override
@@ -131,7 +115,6 @@ class _$_AuctionsList with DiagnosticableTreeMixin implements _AuctionsList {
             const DeepCollectionEquality().equals(other._auctions, _auctions));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_auctions));
@@ -141,21 +124,11 @@ class _$_AuctionsList with DiagnosticableTreeMixin implements _AuctionsList {
   @pragma('vm:prefer-inline')
   _$$_AuctionsListCopyWith<_$_AuctionsList> get copyWith =>
       __$$_AuctionsListCopyWithImpl<_$_AuctionsList>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_AuctionsListToJson(
-      this,
-    );
-  }
 }
 
 abstract class _AuctionsList implements AuctionsList {
   const factory _AuctionsList({required final List<AuctionOverview> auctions}) =
       _$_AuctionsList;
-
-  factory _AuctionsList.fromJson(Map<String, dynamic> json) =
-      _$_AuctionsList.fromJson;
 
   @override
   List<AuctionOverview> get auctions;
@@ -165,26 +138,15 @@ abstract class _AuctionsList implements AuctionsList {
       throw _privateConstructorUsedError;
 }
 
-AuctionOverview _$AuctionOverviewFromJson(Map<String, dynamic> json) {
-  return _AuctionOverview.fromJson(json);
-}
-
 /// @nodoc
 mixin _$AuctionOverview {
-  @JsonKey(name: 'dt')
-  String get dateString => throw _privateConstructorUsedError;
-  @JsonKey(name: 'winning_bid_max')
+  DateTime get date => throw _privateConstructorUsedError;
   double get maxWinningBid => throw _privateConstructorUsedError;
-  @JsonKey(name: 'winning_bid_min')
   double get minWinningBid => throw _privateConstructorUsedError;
-  @JsonKey(name: 'auction_lots_count')
   int get lotsCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'auction_name')
   String get auctionName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'auction_slug')
-  String get auctionSlug => throw _privateConstructorUsedError;
+  AuctionSlug get auctionSlug => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuctionOverviewCopyWith<AuctionOverview> get copyWith =>
       throw _privateConstructorUsedError;
@@ -197,12 +159,14 @@ abstract class $AuctionOverviewCopyWith<$Res> {
       _$AuctionOverviewCopyWithImpl<$Res, AuctionOverview>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'dt') String dateString,
-      @JsonKey(name: 'winning_bid_max') double maxWinningBid,
-      @JsonKey(name: 'winning_bid_min') double minWinningBid,
-      @JsonKey(name: 'auction_lots_count') int lotsCount,
-      @JsonKey(name: 'auction_name') String auctionName,
-      @JsonKey(name: 'auction_slug') String auctionSlug});
+      {DateTime date,
+      double maxWinningBid,
+      double minWinningBid,
+      int lotsCount,
+      String auctionName,
+      AuctionSlug auctionSlug});
+
+  $AuctionSlugCopyWith<$Res> get auctionSlug;
 }
 
 /// @nodoc
@@ -218,7 +182,7 @@ class _$AuctionOverviewCopyWithImpl<$Res, $Val extends AuctionOverview>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dateString = null,
+    Object? date = null,
     Object? maxWinningBid = null,
     Object? minWinningBid = null,
     Object? lotsCount = null,
@@ -226,10 +190,10 @@ class _$AuctionOverviewCopyWithImpl<$Res, $Val extends AuctionOverview>
     Object? auctionSlug = null,
   }) {
     return _then(_value.copyWith(
-      dateString: null == dateString
-          ? _value.dateString
-          : dateString // ignore: cast_nullable_to_non_nullable
-              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       maxWinningBid: null == maxWinningBid
           ? _value.maxWinningBid
           : maxWinningBid // ignore: cast_nullable_to_non_nullable
@@ -249,8 +213,16 @@ class _$AuctionOverviewCopyWithImpl<$Res, $Val extends AuctionOverview>
       auctionSlug: null == auctionSlug
           ? _value.auctionSlug
           : auctionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
+              as AuctionSlug,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuctionSlugCopyWith<$Res> get auctionSlug {
+    return $AuctionSlugCopyWith<$Res>(_value.auctionSlug, (value) {
+      return _then(_value.copyWith(auctionSlug: value) as $Val);
+    });
   }
 }
 
@@ -263,12 +235,15 @@ abstract class _$$_AuctionOverviewCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'dt') String dateString,
-      @JsonKey(name: 'winning_bid_max') double maxWinningBid,
-      @JsonKey(name: 'winning_bid_min') double minWinningBid,
-      @JsonKey(name: 'auction_lots_count') int lotsCount,
-      @JsonKey(name: 'auction_name') String auctionName,
-      @JsonKey(name: 'auction_slug') String auctionSlug});
+      {DateTime date,
+      double maxWinningBid,
+      double minWinningBid,
+      int lotsCount,
+      String auctionName,
+      AuctionSlug auctionSlug});
+
+  @override
+  $AuctionSlugCopyWith<$Res> get auctionSlug;
 }
 
 /// @nodoc
@@ -282,7 +257,7 @@ class __$$_AuctionOverviewCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dateString = null,
+    Object? date = null,
     Object? maxWinningBid = null,
     Object? minWinningBid = null,
     Object? lotsCount = null,
@@ -290,10 +265,10 @@ class __$$_AuctionOverviewCopyWithImpl<$Res>
     Object? auctionSlug = null,
   }) {
     return _then(_$_AuctionOverview(
-      dateString: null == dateString
-          ? _value.dateString
-          : dateString // ignore: cast_nullable_to_non_nullable
-              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       maxWinningBid: null == maxWinningBid
           ? _value.maxWinningBid
           : maxWinningBid // ignore: cast_nullable_to_non_nullable
@@ -313,62 +288,38 @@ class __$$_AuctionOverviewCopyWithImpl<$Res>
       auctionSlug: null == auctionSlug
           ? _value.auctionSlug
           : auctionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
+              as AuctionSlug,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_AuctionOverview
-    with DiagnosticableTreeMixin
-    implements _AuctionOverview {
+
+class _$_AuctionOverview implements _AuctionOverview {
   const _$_AuctionOverview(
-      {@JsonKey(name: 'dt') required this.dateString,
-      @JsonKey(name: 'winning_bid_max') required this.maxWinningBid,
-      @JsonKey(name: 'winning_bid_min') required this.minWinningBid,
-      @JsonKey(name: 'auction_lots_count') required this.lotsCount,
-      @JsonKey(name: 'auction_name') required this.auctionName,
-      @JsonKey(name: 'auction_slug') required this.auctionSlug});
-
-  factory _$_AuctionOverview.fromJson(Map<String, dynamic> json) =>
-      _$$_AuctionOverviewFromJson(json);
+      {required this.date,
+      required this.maxWinningBid,
+      required this.minWinningBid,
+      required this.lotsCount,
+      required this.auctionName,
+      required this.auctionSlug});
 
   @override
-  @JsonKey(name: 'dt')
-  final String dateString;
+  final DateTime date;
   @override
-  @JsonKey(name: 'winning_bid_max')
   final double maxWinningBid;
   @override
-  @JsonKey(name: 'winning_bid_min')
   final double minWinningBid;
   @override
-  @JsonKey(name: 'auction_lots_count')
   final int lotsCount;
   @override
-  @JsonKey(name: 'auction_name')
   final String auctionName;
   @override
-  @JsonKey(name: 'auction_slug')
-  final String auctionSlug;
+  final AuctionSlug auctionSlug;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuctionOverview(dateString: $dateString, maxWinningBid: $maxWinningBid, minWinningBid: $minWinningBid, lotsCount: $lotsCount, auctionName: $auctionName, auctionSlug: $auctionSlug)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'AuctionOverview'))
-      ..add(DiagnosticsProperty('dateString', dateString))
-      ..add(DiagnosticsProperty('maxWinningBid', maxWinningBid))
-      ..add(DiagnosticsProperty('minWinningBid', minWinningBid))
-      ..add(DiagnosticsProperty('lotsCount', lotsCount))
-      ..add(DiagnosticsProperty('auctionName', auctionName))
-      ..add(DiagnosticsProperty('auctionSlug', auctionSlug));
+  String toString() {
+    return 'AuctionOverview(date: $date, maxWinningBid: $maxWinningBid, minWinningBid: $minWinningBid, lotsCount: $lotsCount, auctionName: $auctionName, auctionSlug: $auctionSlug)';
   }
 
   @override
@@ -376,8 +327,7 @@ class _$_AuctionOverview
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuctionOverview &&
-            (identical(other.dateString, dateString) ||
-                other.dateString == dateString) &&
+            (identical(other.date, date) || other.date == date) &&
             (identical(other.maxWinningBid, maxWinningBid) ||
                 other.maxWinningBid == maxWinningBid) &&
             (identical(other.minWinningBid, minWinningBid) ||
@@ -390,9 +340,8 @@ class _$_AuctionOverview
                 other.auctionSlug == auctionSlug));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, dateString, maxWinningBid,
+  int get hashCode => Object.hash(runtimeType, date, maxWinningBid,
       minWinningBid, lotsCount, auctionName, auctionSlug);
 
   @JsonKey(ignore: true)
@@ -400,46 +349,29 @@ class _$_AuctionOverview
   @pragma('vm:prefer-inline')
   _$$_AuctionOverviewCopyWith<_$_AuctionOverview> get copyWith =>
       __$$_AuctionOverviewCopyWithImpl<_$_AuctionOverview>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_AuctionOverviewToJson(
-      this,
-    );
-  }
 }
 
 abstract class _AuctionOverview implements AuctionOverview {
   const factory _AuctionOverview(
-          {@JsonKey(name: 'dt') required final String dateString,
-          @JsonKey(name: 'winning_bid_max') required final double maxWinningBid,
-          @JsonKey(name: 'winning_bid_min') required final double minWinningBid,
-          @JsonKey(name: 'auction_lots_count') required final int lotsCount,
-          @JsonKey(name: 'auction_name') required final String auctionName,
-          @JsonKey(name: 'auction_slug') required final String auctionSlug}) =
-      _$_AuctionOverview;
-
-  factory _AuctionOverview.fromJson(Map<String, dynamic> json) =
-      _$_AuctionOverview.fromJson;
+      {required final DateTime date,
+      required final double maxWinningBid,
+      required final double minWinningBid,
+      required final int lotsCount,
+      required final String auctionName,
+      required final AuctionSlug auctionSlug}) = _$_AuctionOverview;
 
   @override
-  @JsonKey(name: 'dt')
-  String get dateString;
+  DateTime get date;
   @override
-  @JsonKey(name: 'winning_bid_max')
   double get maxWinningBid;
   @override
-  @JsonKey(name: 'winning_bid_min')
   double get minWinningBid;
   @override
-  @JsonKey(name: 'auction_lots_count')
   int get lotsCount;
   @override
-  @JsonKey(name: 'auction_name')
   String get auctionName;
   @override
-  @JsonKey(name: 'auction_slug')
-  String get auctionSlug;
+  AuctionSlug get auctionSlug;
   @override
   @JsonKey(ignore: true)
   _$$_AuctionOverviewCopyWith<_$_AuctionOverview> get copyWith =>

@@ -1,10 +1,8 @@
-// ignore_for_file: invalid_annotation_target
-
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
+import 'package:whisky_auctions_viewer/repository/client/data/remote_auctions_list/remote_auctions_list.dart';
+import 'package:whisky_auctions_viewer/repository/data/auction_slug/auction_slug.dart';
 
 part 'auctions_list.freezed.dart';
-part 'auctions_list.g.dart';
 
 @freezed
 class AuctionsList with _$AuctionsList {
@@ -12,21 +10,30 @@ class AuctionsList with _$AuctionsList {
     required List<AuctionOverview> auctions,
   }) = _AuctionsList;
 
-  factory AuctionsList.fromJson(Map<String, dynamic> json) =>
-      _$AuctionsListFromJson(json);
+  factory AuctionsList.fromRemote(RemoteAuctionsList remote) => AuctionsList(
+        auctions: remote.auctions
+            .map(
+              (remoteOverview) => AuctionOverview(
+                date: DateTime.parse(remoteOverview.dateString),
+                maxWinningBid: remoteOverview.maxWinningBid,
+                minWinningBid: remoteOverview.minWinningBid,
+                lotsCount: remoteOverview.lotsCount,
+                auctionName: remoteOverview.auctionName,
+                auctionSlug: AuctionSlug(value: remoteOverview.auctionSlug),
+              ),
+            )
+            .toList(),
+      );
 }
 
 @freezed
 class AuctionOverview with _$AuctionOverview {
   const factory AuctionOverview({
-    @JsonKey(name: 'dt') required String dateString,
-    @JsonKey(name: 'winning_bid_max') required double maxWinningBid,
-    @JsonKey(name: 'winning_bid_min') required double minWinningBid,
-    @JsonKey(name: 'auction_lots_count') required int lotsCount,
-    @JsonKey(name: 'auction_name') required String auctionName,
-    @JsonKey(name: 'auction_slug') required String auctionSlug,
+    required DateTime date,
+    required double maxWinningBid,
+    required double minWinningBid,
+    required int lotsCount,
+    required String auctionName,
+    required AuctionSlug auctionSlug,
   }) = _AuctionOverview;
-
-  factory AuctionOverview.fromJson(Map<String, dynamic> json) =>
-      _$AuctionOverviewFromJson(json);
 }

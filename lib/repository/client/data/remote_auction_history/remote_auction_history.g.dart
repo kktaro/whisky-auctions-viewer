@@ -1,25 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auction_history.dart';
+part of 'remote_auction_history.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AuctionHistory _$$_AuctionHistoryFromJson(Map<String, dynamic> json) =>
-    _$_AuctionHistory(
+_$_RemoteAuctionHistory _$$_RemoteAuctionHistoryFromJson(
+        Map<String, dynamic> json) =>
+    _$_RemoteAuctionHistory(
       histories: (json['histories'] as List<dynamic>)
-          .map((e) => HistoryDetail.fromJson(e as Map<String, dynamic>))
+          .map((e) => RemoteHistoryDetail.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_AuctionHistoryToJson(_$_AuctionHistory instance) =>
+Map<String, dynamic> _$$_RemoteAuctionHistoryToJson(
+        _$_RemoteAuctionHistory instance) =>
     <String, dynamic>{
       'histories': instance.histories,
     };
 
-_$_HistoryDetail _$$_HistoryDetailFromJson(Map<String, dynamic> json) =>
-    _$_HistoryDetail(
+_$_RemoteHistoryDetail _$$_RemoteHistoryDetailFromJson(
+        Map<String, dynamic> json) =>
+    _$_RemoteHistoryDetail(
       dateString: json['dt'] as String,
       maxWinningBid: (json['winning_bid_max'] as num).toDouble(),
       minWinningBid: (json['winning_bid_min'] as num).toDouble(),
@@ -29,7 +32,8 @@ _$_HistoryDetail _$$_HistoryDetailFromJson(Map<String, dynamic> json) =>
       auctionSlug: json['auction_slug'] as String,
     );
 
-Map<String, dynamic> _$$_HistoryDetailToJson(_$_HistoryDetail instance) =>
+Map<String, dynamic> _$$_RemoteHistoryDetailToJson(
+        _$_RemoteHistoryDetail instance) =>
     <String, dynamic>{
       'dt': instance.dateString,
       'winning_bid_max': instance.maxWinningBid,

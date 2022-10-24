@@ -14,15 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-AuctionHistory _$AuctionHistoryFromJson(Map<String, dynamic> json) {
-  return _AuctionHistory.fromJson(json);
-}
-
 /// @nodoc
 mixin _$AuctionHistory {
   List<HistoryDetail> get histories => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AuctionHistoryCopyWith<AuctionHistory> get copyWith =>
       throw _privateConstructorUsedError;
@@ -95,15 +90,10 @@ class __$$_AuctionHistoryCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_AuctionHistory
-    with DiagnosticableTreeMixin
-    implements _AuctionHistory {
+
+class _$_AuctionHistory implements _AuctionHistory {
   const _$_AuctionHistory({required final List<HistoryDetail> histories})
       : _histories = histories;
-
-  factory _$_AuctionHistory.fromJson(Map<String, dynamic> json) =>
-      _$$_AuctionHistoryFromJson(json);
 
   final List<HistoryDetail> _histories;
   @override
@@ -113,16 +103,8 @@ class _$_AuctionHistory
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'AuctionHistory(histories: $histories)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'AuctionHistory'))
-      ..add(DiagnosticsProperty('histories', histories));
   }
 
   @override
@@ -134,7 +116,6 @@ class _$_AuctionHistory
                 .equals(other._histories, _histories));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_histories));
@@ -144,21 +125,11 @@ class _$_AuctionHistory
   @pragma('vm:prefer-inline')
   _$$_AuctionHistoryCopyWith<_$_AuctionHistory> get copyWith =>
       __$$_AuctionHistoryCopyWithImpl<_$_AuctionHistory>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_AuctionHistoryToJson(
-      this,
-    );
-  }
 }
 
 abstract class _AuctionHistory implements AuctionHistory {
   const factory _AuctionHistory(
       {required final List<HistoryDetail> histories}) = _$_AuctionHistory;
-
-  factory _AuctionHistory.fromJson(Map<String, dynamic> json) =
-      _$_AuctionHistory.fromJson;
 
   @override
   List<HistoryDetail> get histories;
@@ -168,28 +139,16 @@ abstract class _AuctionHistory implements AuctionHistory {
       throw _privateConstructorUsedError;
 }
 
-HistoryDetail _$HistoryDetailFromJson(Map<String, dynamic> json) {
-  return _HistoryDetail.fromJson(json);
-}
-
 /// @nodoc
 mixin _$HistoryDetail {
-  @JsonKey(name: 'dt')
-  String get dateString => throw _privateConstructorUsedError;
-  @JsonKey(name: 'winning_bid_max')
+  DateTime get date => throw _privateConstructorUsedError;
   double get maxWinningBid => throw _privateConstructorUsedError;
-  @JsonKey(name: 'winning_bid_min')
   double get minWinningBid => throw _privateConstructorUsedError;
-  @JsonKey(name: 'winning_bid_mean')
   double get meanWinningBid => throw _privateConstructorUsedError;
-  @JsonKey(name: 'auction_lots_count')
   int get lotsCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'auction_name')
   String get auctionName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'auction_slug')
-  String get auctionSlug => throw _privateConstructorUsedError;
+  AuctionSlug get auctionSlug => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HistoryDetailCopyWith<HistoryDetail> get copyWith =>
       throw _privateConstructorUsedError;
@@ -202,13 +161,15 @@ abstract class $HistoryDetailCopyWith<$Res> {
       _$HistoryDetailCopyWithImpl<$Res, HistoryDetail>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'dt') String dateString,
-      @JsonKey(name: 'winning_bid_max') double maxWinningBid,
-      @JsonKey(name: 'winning_bid_min') double minWinningBid,
-      @JsonKey(name: 'winning_bid_mean') double meanWinningBid,
-      @JsonKey(name: 'auction_lots_count') int lotsCount,
-      @JsonKey(name: 'auction_name') String auctionName,
-      @JsonKey(name: 'auction_slug') String auctionSlug});
+      {DateTime date,
+      double maxWinningBid,
+      double minWinningBid,
+      double meanWinningBid,
+      int lotsCount,
+      String auctionName,
+      AuctionSlug auctionSlug});
+
+  $AuctionSlugCopyWith<$Res> get auctionSlug;
 }
 
 /// @nodoc
@@ -224,7 +185,7 @@ class _$HistoryDetailCopyWithImpl<$Res, $Val extends HistoryDetail>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dateString = null,
+    Object? date = null,
     Object? maxWinningBid = null,
     Object? minWinningBid = null,
     Object? meanWinningBid = null,
@@ -233,10 +194,10 @@ class _$HistoryDetailCopyWithImpl<$Res, $Val extends HistoryDetail>
     Object? auctionSlug = null,
   }) {
     return _then(_value.copyWith(
-      dateString: null == dateString
-          ? _value.dateString
-          : dateString // ignore: cast_nullable_to_non_nullable
-              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       maxWinningBid: null == maxWinningBid
           ? _value.maxWinningBid
           : maxWinningBid // ignore: cast_nullable_to_non_nullable
@@ -260,8 +221,16 @@ class _$HistoryDetailCopyWithImpl<$Res, $Val extends HistoryDetail>
       auctionSlug: null == auctionSlug
           ? _value.auctionSlug
           : auctionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
+              as AuctionSlug,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AuctionSlugCopyWith<$Res> get auctionSlug {
+    return $AuctionSlugCopyWith<$Res>(_value.auctionSlug, (value) {
+      return _then(_value.copyWith(auctionSlug: value) as $Val);
+    });
   }
 }
 
@@ -274,13 +243,16 @@ abstract class _$$_HistoryDetailCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'dt') String dateString,
-      @JsonKey(name: 'winning_bid_max') double maxWinningBid,
-      @JsonKey(name: 'winning_bid_min') double minWinningBid,
-      @JsonKey(name: 'winning_bid_mean') double meanWinningBid,
-      @JsonKey(name: 'auction_lots_count') int lotsCount,
-      @JsonKey(name: 'auction_name') String auctionName,
-      @JsonKey(name: 'auction_slug') String auctionSlug});
+      {DateTime date,
+      double maxWinningBid,
+      double minWinningBid,
+      double meanWinningBid,
+      int lotsCount,
+      String auctionName,
+      AuctionSlug auctionSlug});
+
+  @override
+  $AuctionSlugCopyWith<$Res> get auctionSlug;
 }
 
 /// @nodoc
@@ -294,7 +266,7 @@ class __$$_HistoryDetailCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dateString = null,
+    Object? date = null,
     Object? maxWinningBid = null,
     Object? minWinningBid = null,
     Object? meanWinningBid = null,
@@ -303,10 +275,10 @@ class __$$_HistoryDetailCopyWithImpl<$Res>
     Object? auctionSlug = null,
   }) {
     return _then(_$_HistoryDetail(
-      dateString: null == dateString
-          ? _value.dateString
-          : dateString // ignore: cast_nullable_to_non_nullable
-              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       maxWinningBid: null == maxWinningBid
           ? _value.maxWinningBid
           : maxWinningBid // ignore: cast_nullable_to_non_nullable
@@ -330,65 +302,41 @@ class __$$_HistoryDetailCopyWithImpl<$Res>
       auctionSlug: null == auctionSlug
           ? _value.auctionSlug
           : auctionSlug // ignore: cast_nullable_to_non_nullable
-              as String,
+              as AuctionSlug,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_HistoryDetail with DiagnosticableTreeMixin implements _HistoryDetail {
+
+class _$_HistoryDetail implements _HistoryDetail {
   const _$_HistoryDetail(
-      {@JsonKey(name: 'dt') required this.dateString,
-      @JsonKey(name: 'winning_bid_max') required this.maxWinningBid,
-      @JsonKey(name: 'winning_bid_min') required this.minWinningBid,
-      @JsonKey(name: 'winning_bid_mean') required this.meanWinningBid,
-      @JsonKey(name: 'auction_lots_count') required this.lotsCount,
-      @JsonKey(name: 'auction_name') required this.auctionName,
-      @JsonKey(name: 'auction_slug') required this.auctionSlug});
-
-  factory _$_HistoryDetail.fromJson(Map<String, dynamic> json) =>
-      _$$_HistoryDetailFromJson(json);
+      {required this.date,
+      required this.maxWinningBid,
+      required this.minWinningBid,
+      required this.meanWinningBid,
+      required this.lotsCount,
+      required this.auctionName,
+      required this.auctionSlug});
 
   @override
-  @JsonKey(name: 'dt')
-  final String dateString;
+  final DateTime date;
   @override
-  @JsonKey(name: 'winning_bid_max')
   final double maxWinningBid;
   @override
-  @JsonKey(name: 'winning_bid_min')
   final double minWinningBid;
   @override
-  @JsonKey(name: 'winning_bid_mean')
   final double meanWinningBid;
   @override
-  @JsonKey(name: 'auction_lots_count')
   final int lotsCount;
   @override
-  @JsonKey(name: 'auction_name')
   final String auctionName;
   @override
-  @JsonKey(name: 'auction_slug')
-  final String auctionSlug;
+  final AuctionSlug auctionSlug;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HistoryDetail(dateString: $dateString, maxWinningBid: $maxWinningBid, minWinningBid: $minWinningBid, meanWinningBid: $meanWinningBid, lotsCount: $lotsCount, auctionName: $auctionName, auctionSlug: $auctionSlug)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'HistoryDetail'))
-      ..add(DiagnosticsProperty('dateString', dateString))
-      ..add(DiagnosticsProperty('maxWinningBid', maxWinningBid))
-      ..add(DiagnosticsProperty('minWinningBid', minWinningBid))
-      ..add(DiagnosticsProperty('meanWinningBid', meanWinningBid))
-      ..add(DiagnosticsProperty('lotsCount', lotsCount))
-      ..add(DiagnosticsProperty('auctionName', auctionName))
-      ..add(DiagnosticsProperty('auctionSlug', auctionSlug));
+  String toString() {
+    return 'HistoryDetail(date: $date, maxWinningBid: $maxWinningBid, minWinningBid: $minWinningBid, meanWinningBid: $meanWinningBid, lotsCount: $lotsCount, auctionName: $auctionName, auctionSlug: $auctionSlug)';
   }
 
   @override
@@ -396,8 +344,7 @@ class _$_HistoryDetail with DiagnosticableTreeMixin implements _HistoryDetail {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HistoryDetail &&
-            (identical(other.dateString, dateString) ||
-                other.dateString == dateString) &&
+            (identical(other.date, date) || other.date == date) &&
             (identical(other.maxWinningBid, maxWinningBid) ||
                 other.maxWinningBid == maxWinningBid) &&
             (identical(other.minWinningBid, minWinningBid) ||
@@ -412,9 +359,8 @@ class _$_HistoryDetail with DiagnosticableTreeMixin implements _HistoryDetail {
                 other.auctionSlug == auctionSlug));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, dateString, maxWinningBid,
+  int get hashCode => Object.hash(runtimeType, date, maxWinningBid,
       minWinningBid, meanWinningBid, lotsCount, auctionName, auctionSlug);
 
   @JsonKey(ignore: true)
@@ -422,56 +368,32 @@ class _$_HistoryDetail with DiagnosticableTreeMixin implements _HistoryDetail {
   @pragma('vm:prefer-inline')
   _$$_HistoryDetailCopyWith<_$_HistoryDetail> get copyWith =>
       __$$_HistoryDetailCopyWithImpl<_$_HistoryDetail>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_HistoryDetailToJson(
-      this,
-    );
-  }
 }
 
 abstract class _HistoryDetail implements HistoryDetail {
   const factory _HistoryDetail(
-      {@JsonKey(name: 'dt')
-          required final String dateString,
-      @JsonKey(name: 'winning_bid_max')
-          required final double maxWinningBid,
-      @JsonKey(name: 'winning_bid_min')
-          required final double minWinningBid,
-      @JsonKey(name: 'winning_bid_mean')
-          required final double meanWinningBid,
-      @JsonKey(name: 'auction_lots_count')
-          required final int lotsCount,
-      @JsonKey(name: 'auction_name')
-          required final String auctionName,
-      @JsonKey(name: 'auction_slug')
-          required final String auctionSlug}) = _$_HistoryDetail;
-
-  factory _HistoryDetail.fromJson(Map<String, dynamic> json) =
-      _$_HistoryDetail.fromJson;
+      {required final DateTime date,
+      required final double maxWinningBid,
+      required final double minWinningBid,
+      required final double meanWinningBid,
+      required final int lotsCount,
+      required final String auctionName,
+      required final AuctionSlug auctionSlug}) = _$_HistoryDetail;
 
   @override
-  @JsonKey(name: 'dt')
-  String get dateString;
+  DateTime get date;
   @override
-  @JsonKey(name: 'winning_bid_max')
   double get maxWinningBid;
   @override
-  @JsonKey(name: 'winning_bid_min')
   double get minWinningBid;
   @override
-  @JsonKey(name: 'winning_bid_mean')
   double get meanWinningBid;
   @override
-  @JsonKey(name: 'auction_lots_count')
   int get lotsCount;
   @override
-  @JsonKey(name: 'auction_name')
   String get auctionName;
   @override
-  @JsonKey(name: 'auction_slug')
-  String get auctionSlug;
+  AuctionSlug get auctionSlug;
   @override
   @JsonKey(ignore: true)
   _$$_HistoryDetailCopyWith<_$_HistoryDetail> get copyWith =>
