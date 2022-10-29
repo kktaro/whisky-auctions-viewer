@@ -15,5 +15,6 @@ class AppTheme {
         colorSchemeSeed: Colors.yellow,
         fontFamily: 'Noto Sans JP',
         useMaterial3: true,
+        cardColor: const Color(0xffd8be5f),
       );
 }
