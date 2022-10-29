@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whisky_auctions_viewer/const/app_theme.dart';
 import 'package:whisky_auctions_viewer/repository/client/impl/whisly_auctions_client_impl.dart';
 import 'package:whisky_auctions_viewer/repository/client/whisky_auctions_client.dart';
+import 'package:whisky_auctions_viewer/repository/data/auction_slug/auction_slug.dart';
 import 'package:whisky_auctions_viewer/repository/impl/whisky_auctions_repository_impl.dart';
 import 'package:whisky_auctions_viewer/repository/whisky_auctions_repository.dart';
 import 'package:whisky_auctions_viewer/router/app_router.dart';
@@ -38,10 +39,10 @@ final whiskyListViewModelProvider = AutoDisposeStateNotifierProvider<
         WhiskyListViewModel, AsyncValue<WhiskyListState>>(
     (ref) => WhiskyListViewModel(ref.read(_whiskyAuctionsRepositoryProvider)));
 
-final whiskyDetailViewModelProvider = AutoDisposeStateNotifierProvider<
-        WhiskyDetailViewModel, AsyncValue<WhiskyDetailState>>(
-    (ref) =>
-        WhiskyDetailViewModel(ref.read(_whiskyAuctionsRepositoryProvider)));
+final whiskyDetailViewModelProvider = AutoDisposeStateNotifierProviderFamily<
+    WhiskyDetailViewModel, AsyncValue<WhiskyDetailState>, AuctionSlug>((ref,
+        slug) =>
+    WhiskyDetailViewModel(ref.read(_whiskyAuctionsRepositoryProvider), slug));
 
 void main() {
   runApp(const ProviderScope(child: AppRouter()));
