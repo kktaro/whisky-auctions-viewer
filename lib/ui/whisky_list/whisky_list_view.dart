@@ -43,7 +43,8 @@ class WhiskyListView extends ConsumerWidget {
                           key: Key(auction.hashCode.toString()),
                           auction: auction,
                           onTap: () {
-                            context.go('products/${auction.auctionSlug.value}');
+                            context
+                                .go('/products/${auction.auctionSlug.value}');
                           },
                         ))
                     .toList(),

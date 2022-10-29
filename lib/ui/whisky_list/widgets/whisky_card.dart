@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whisky_auctions_viewer/repository/data/auctions_list/auctions_list.dart';
+import 'package:whisky_auctions_viewer/ui/common/atoms/basic_text.dart';
 import 'package:whisky_auctions_viewer/util/date_time_extension.dart';
 
 class WhiskyCard extends StatelessWidget {
@@ -36,9 +37,9 @@ class WhiskyCard extends StatelessWidget {
                   title: Text(auction.auctionName),
                   subtitle: Text('updated: ${auction.date.toDateString()}'),
                 ),
-                Text('lots: ${auction.lotsCount}'),
-                Text('maxWinning: ${auction.maxWinningBid}'),
-                Text('minWinning: ${auction.minWinningBid}'),
+                BasicText('lots: ${auction.lotsCount}'),
+                BasicText('maxWinning: ${auction.maxWinningBid}'),
+                BasicText('minWinning: ${auction.minWinningBid}'),
               ],
             ),
           ),
