@@ -33,22 +33,18 @@ class WhiskyListView extends ConsumerWidget {
           ],
         ),
         data: (whiskyListState) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: whiskyListState.auctions.auctions
-                    .map((auction) => WhiskyCard(
-                          key: Key(auction.hashCode.toString()),
-                          auction: auction,
-                          onTap: () {
-                            context
-                                .go('/products/${auction.auctionSlug.value}');
-                          },
-                        ))
-                    .toList(),
-              ),
+          return Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
+            child: ListView(
+              children: whiskyListState.auctions.auctions
+                  .map((auction) => WhiskyCard(
+                        key: Key(auction.hashCode.toString()),
+                        auction: auction,
+                        onTap: () {
+                          context.go('/products/${auction.auctionSlug.value}');
+                        },
+                      ))
+                  .toList(),
             ),
           );
         },
