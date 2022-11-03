@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:whisky_auctions_viewer/repository/data/auctions_list/auctions_list.dart';
 import 'package:whisky_auctions_viewer/repository/whisky_auctions_repository.dart';
@@ -18,6 +17,8 @@ class WhiskyListViewModel extends StateNotifier<AsyncValue<WhiskyListState>> {
 
   final WhiskyAuctionsRepository _repository;
 
+  final keywordController = TextEditingController();
+
   Future onFetch() async {
     state = const AsyncLoading();
     try {
@@ -31,8 +32,9 @@ class WhiskyListViewModel extends StateNotifier<AsyncValue<WhiskyListState>> {
   Future onSearch() async {
     final searchTarget = state.value!.searchTarget;
     final keyword = state.value!.keyword;
+    final oldState = state.value!;
 
-    state = const AsyncLoading();
+    state = const AsyncLoading<WhiskyListState>().copyWithPrevious(state);
     try {
       final auctionList = await fetchAuctions();
 
@@ -64,7 +66,10 @@ class WhiskyListViewModel extends StateNotifier<AsyncValue<WhiskyListState>> {
       }
 
       state = AsyncData(
-          WhiskyListState(auctions: AuctionsList(auctions: searchedAuctions)));
+        oldState.copyWith(
+          auctions: AuctionsList(auctions: searchedAuctions),
+        ),
+      );
     } catch (error) {
       log(error.toString());
       state = AsyncError(error, StackTrace.current);

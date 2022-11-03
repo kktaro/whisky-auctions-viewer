@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -16,8 +18,6 @@ class WhiskyListView extends ConsumerWidget {
     final state = ref.watch(_provider);
     final viewModel = ref.read(_provider.notifier);
 
-    final searchController = TextEditingController(text: '');
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('WhiskyList'),
@@ -30,10 +30,14 @@ class WhiskyListView extends ConsumerWidget {
               SizedBox(
                 width: 200,
                 child: TextField(
-                  controller: searchController,
+                  controller: viewModel.keywordController,
+                  onChanged: (value) => viewModel.onSetKeyword(value),                  
                 ),
               ),
-              ElevatedButton(onPressed: () {}, child: const Text('Search')),
+              ElevatedButton(
+                onPressed: () => viewModel.onSearch(),
+                child: const Text('Search'),
+              ),
             ],
           ),
           Padding(
