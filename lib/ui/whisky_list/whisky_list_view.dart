@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:whisky_auctions_viewer/main.dart';
 import 'package:whisky_auctions_viewer/ui/common/atoms/circular_indicator.dart';
+import 'package:whisky_auctions_viewer/ui/whisky_list/whisky_list_search_target.dart';
 import 'package:whisky_auctions_viewer/ui/whisky_list/widgets/whisky_card.dart';
 
 final _provider = whiskyListViewModelProvider;
@@ -40,12 +41,13 @@ class WhiskyListView extends ConsumerWidget {
             child: SingleChildScrollView(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(onPressed: () {}, child: const Text('button1')),
-                  TextButton(onPressed: () {}, child: const Text('button2')),
-                  TextButton(onPressed: () {}, child: const Text('button3')),
-                  TextButton(onPressed: () {}, child: const Text('button4')),
-                ],
+                children: WhiskyListSearchTarget.values
+                    .map((target) => TextButton(
+                          key: Key(target.index.toString()),
+                          onPressed: () => viewModel.onSearch(),
+                          child: Text(target.searchTarget),
+                        ))
+                    .toList(),
               ),
             ),
           ),
