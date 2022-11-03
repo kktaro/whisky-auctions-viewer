@@ -44,7 +44,16 @@ class WhiskyListView extends ConsumerWidget {
                 children: WhiskyListSearchTarget.values
                     .map((target) => TextButton(
                           key: Key(target.index.toString()),
-                          onPressed: () => viewModel.onSearch(),
+                          onPressed: () => viewModel.onSetSearchTarget(target),
+                          style: target == state.value?.searchTarget
+                              ? ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      Theme.of(context)
+                                          .colorScheme
+                                          .primary
+                                          .withAlpha(100)),
+                                )
+                              : null,
                           child: Text(target.searchTarget),
                         ))
                     .toList(),
