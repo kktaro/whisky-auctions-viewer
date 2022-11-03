@@ -13,41 +13,77 @@ class WhiskyListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(_provider);
+    final viewModel = ref.read(_provider.notifier);
+
+    final searchController = TextEditingController(text: '');
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('WhiskyList'),
       ),
-      body: state.when(
-        loading: () => const CircularIndicator(),
-        error: (_, __) => Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: () {
-                ref.read(_provider.notifier).onFetch();
-              },
-              child: const Text('Refresh'),
-            )
-          ],
-        ),
-        data: (whiskyListState) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16),
-            child: ListView(
-              children: whiskyListState.auctions.auctions
-                  .map((auction) => WhiskyCard(
-                        key: Key(auction.hashCode.toString()),
-                        auction: auction,
-                        onTap: () {
-                          context.go('/products/${auction.auctionSlug.value}');
-                        },
-                      ))
-                  .toList(),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 200,
+                child: TextField(
+                  controller: searchController,
+                ),
+              ),
+              ElevatedButton(onPressed: () {}, child: const Text('Search')),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+            child: SingleChildScrollView(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(onPressed: () {}, child: const Text('button1')),
+                  TextButton(onPressed: () {}, child: const Text('button2')),
+                  TextButton(onPressed: () {}, child: const Text('button3')),
+                  TextButton(onPressed: () {}, child: const Text('button4')),
+                ],
+              ),
             ),
-          );
-        },
+          ),
+          state.when(
+            loading: () => const CircularIndicator(),
+            error: (_, __) => Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () {
+                    viewModel.onFetch();
+                  },
+                  child: const Text('Refresh'),
+                )
+              ],
+            ),
+            data: (whiskyListState) {
+              return Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  child: ListView(
+                    children: whiskyListState.auctions.auctions
+                        .map((auction) => WhiskyCard(
+                              key: Key(auction.hashCode.toString()),
+                              auction: auction,
+                              onTap: () {
+                                context.go(
+                                    '/products/${auction.auctionSlug.value}');
+                              },
+                            ))
+                        .toList(),
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
