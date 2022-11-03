@@ -13,6 +13,7 @@ class WhiskyCard extends StatelessWidget {
   final AuctionOverview auction;
   final void Function() onTap;
 
+  // ignore: non_constant_identifier_names
   final _BORDER_RADIUS = BorderRadius.circular(20.0);
 
   @override

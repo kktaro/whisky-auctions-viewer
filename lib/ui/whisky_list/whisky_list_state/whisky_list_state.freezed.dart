@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$WhiskyListState {
   AuctionsList get auctions => throw _privateConstructorUsedError;
+  String get keyword => throw _privateConstructorUsedError;
+  WhiskyListSearchTarget get searchTarget => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WhiskyListStateCopyWith<WhiskyListState> get copyWith =>
@@ -29,7 +31,10 @@ abstract class $WhiskyListStateCopyWith<$Res> {
           WhiskyListState value, $Res Function(WhiskyListState) then) =
       _$WhiskyListStateCopyWithImpl<$Res, WhiskyListState>;
   @useResult
-  $Res call({AuctionsList auctions});
+  $Res call(
+      {AuctionsList auctions,
+      String keyword,
+      WhiskyListSearchTarget searchTarget});
 
   $AuctionsListCopyWith<$Res> get auctions;
 }
@@ -48,12 +53,22 @@ class _$WhiskyListStateCopyWithImpl<$Res, $Val extends WhiskyListState>
   @override
   $Res call({
     Object? auctions = null,
+    Object? keyword = null,
+    Object? searchTarget = null,
   }) {
     return _then(_value.copyWith(
       auctions: null == auctions
           ? _value.auctions
           : auctions // ignore: cast_nullable_to_non_nullable
               as AuctionsList,
+      keyword: null == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String,
+      searchTarget: null == searchTarget
+          ? _value.searchTarget
+          : searchTarget // ignore: cast_nullable_to_non_nullable
+              as WhiskyListSearchTarget,
     ) as $Val);
   }
 
@@ -74,7 +89,10 @@ abstract class _$$_WhiskyListStateCopyWith<$Res>
       __$$_WhiskyListStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuctionsList auctions});
+  $Res call(
+      {AuctionsList auctions,
+      String keyword,
+      WhiskyListSearchTarget searchTarget});
 
   @override
   $AuctionsListCopyWith<$Res> get auctions;
@@ -92,12 +110,22 @@ class __$$_WhiskyListStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? auctions = null,
+    Object? keyword = null,
+    Object? searchTarget = null,
   }) {
     return _then(_$_WhiskyListState(
       auctions: null == auctions
           ? _value.auctions
           : auctions // ignore: cast_nullable_to_non_nullable
               as AuctionsList,
+      keyword: null == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
+              as String,
+      searchTarget: null == searchTarget
+          ? _value.searchTarget
+          : searchTarget // ignore: cast_nullable_to_non_nullable
+              as WhiskyListSearchTarget,
     ));
   }
 }
@@ -107,14 +135,23 @@ class __$$_WhiskyListStateCopyWithImpl<$Res>
 class _$_WhiskyListState
     with DiagnosticableTreeMixin
     implements _WhiskyListState {
-  const _$_WhiskyListState({required this.auctions});
+  const _$_WhiskyListState(
+      {required this.auctions,
+      this.keyword = '',
+      this.searchTarget = WhiskyListSearchTarget.off});
 
   @override
   final AuctionsList auctions;
+  @override
+  @JsonKey()
+  final String keyword;
+  @override
+  @JsonKey()
+  final WhiskyListSearchTarget searchTarget;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WhiskyListState(auctions: $auctions)';
+    return 'WhiskyListState(auctions: $auctions, keyword: $keyword, searchTarget: $searchTarget)';
   }
 
   @override
@@ -122,7 +159,9 @@ class _$_WhiskyListState
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'WhiskyListState'))
-      ..add(DiagnosticsProperty('auctions', auctions));
+      ..add(DiagnosticsProperty('auctions', auctions))
+      ..add(DiagnosticsProperty('keyword', keyword))
+      ..add(DiagnosticsProperty('searchTarget', searchTarget));
   }
 
   @override
@@ -131,11 +170,14 @@ class _$_WhiskyListState
         (other.runtimeType == runtimeType &&
             other is _$_WhiskyListState &&
             (identical(other.auctions, auctions) ||
-                other.auctions == auctions));
+                other.auctions == auctions) &&
+            (identical(other.keyword, keyword) || other.keyword == keyword) &&
+            (identical(other.searchTarget, searchTarget) ||
+                other.searchTarget == searchTarget));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, auctions);
+  int get hashCode => Object.hash(runtimeType, auctions, keyword, searchTarget);
 
   @JsonKey(ignore: true)
   @override
@@ -145,11 +187,17 @@ class _$_WhiskyListState
 }
 
 abstract class _WhiskyListState implements WhiskyListState {
-  const factory _WhiskyListState({required final AuctionsList auctions}) =
-      _$_WhiskyListState;
+  const factory _WhiskyListState(
+      {required final AuctionsList auctions,
+      final String keyword,
+      final WhiskyListSearchTarget searchTarget}) = _$_WhiskyListState;
 
   @override
   AuctionsList get auctions;
+  @override
+  String get keyword;
+  @override
+  WhiskyListSearchTarget get searchTarget;
   @override
   @JsonKey(ignore: true)
   _$$_WhiskyListStateCopyWith<_$_WhiskyListState> get copyWith =>

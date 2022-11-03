@@ -18,7 +18,7 @@ final lightThemeProvider = Provider<AppTheme>((_) => AppTheme.light());
 final darkThemeProvider = Provider<AppTheme>((_) => AppTheme.dark());
 
 // client
-final _dioProvider = Provider<Dio>((_) => Dio(
+final dioProvider = Provider<Dio>((_) => Dio(
       BaseOptions(
         baseUrl: 'https://whiskyhunter.net/api/',
         connectTimeout: 10000,
@@ -26,23 +26,23 @@ final _dioProvider = Provider<Dio>((_) => Dio(
       ),
     ));
 
-final _whiskyAuctionClientProvider = Provider<WhiskyAuctionsClient>(
-    (ref) => WhiskyAuctionsClientImpl(dio: ref.read(_dioProvider)));
+final whiskyAuctionClientProvider = Provider<WhiskyAuctionsClient>(
+    (ref) => WhiskyAuctionsClientImpl(dio: ref.read(dioProvider)));
 
 // repository
-final _whiskyAuctionsRepositoryProvider = Provider<WhiskyAuctionsRepository>(
+final whiskyAuctionsRepositoryProvider = Provider<WhiskyAuctionsRepository>(
     (ref) => WhiskyAuctionsRepositoryImpl(
-        client: ref.read(_whiskyAuctionClientProvider)));
+        client: ref.read(whiskyAuctionClientProvider)));
 
 // viewmodel
 final whiskyListViewModelProvider = AutoDisposeStateNotifierProvider<
         WhiskyListViewModel, AsyncValue<WhiskyListState>>(
-    (ref) => WhiskyListViewModel(ref.read(_whiskyAuctionsRepositoryProvider)));
+    (ref) => WhiskyListViewModel(ref.read(whiskyAuctionsRepositoryProvider)));
 
 final whiskyDetailViewModelProvider = AutoDisposeStateNotifierProviderFamily<
     WhiskyDetailViewModel, AsyncValue<WhiskyDetailState>, AuctionSlug>((ref,
         slug) =>
-    WhiskyDetailViewModel(ref.read(_whiskyAuctionsRepositoryProvider), slug));
+    WhiskyDetailViewModel(ref.read(whiskyAuctionsRepositoryProvider), slug));
 
 void main() {
   runApp(const ProviderScope(child: AppRouter()));
